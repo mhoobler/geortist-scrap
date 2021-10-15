@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Canvas, Controls } from "./containers";
 
 import { constants } from "./utils/dummyData";
+import { CanvasProvider } from "./utils/context/CanvasContext.js";
 
 import "./App.css";
 
@@ -31,8 +32,10 @@ function App() {
 
   return (
     <div className="App">
-      <Controls constants={constants} functions={{}} />
-      <Canvas {...resolution} />
+      <CanvasProvider>
+        <Controls constants={constants} functions={{}} />
+        <Canvas {...resolution} />
+      </CanvasProvider>
     </div>
   );
 }

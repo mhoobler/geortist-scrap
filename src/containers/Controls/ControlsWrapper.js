@@ -1,4 +1,8 @@
+import { useContext } from "react";
+
 import ControlsContainer from "./ControlsContainer";
+import { CanvasContext } from "../../utils/context/CanvasContext";
+
 import "./Controls.css";
 
 /*
@@ -6,9 +10,12 @@ import "./Controls.css";
  */
 
 const ControlsWrapper = (props) => {
+  const { state, dispatch } = useContext(CanvasContext);
+  console.log(state);
+
   return (
     <div className="controls-wrapper">
-      <ControlsContainer {...props} />
+      <ControlsContainer {...state} />
     </div>
   );
 };

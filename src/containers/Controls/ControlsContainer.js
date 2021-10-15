@@ -1,19 +1,34 @@
 import { useState } from "react";
 
-import ControlsForm from "./ControlsForm";
+import { Constants, Functions } from "./fieldsets";
 
 const ControlsContainer = ({ constants, functions }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState("functions");
 
-  const handleShow = () => setShow(!show);
+  const handleShowFunctions = () => setShow("functions");
+  const handleShowConstants = () => setShow("constants");
+
   return (
     <div className="controls-container">
-      <button onClick={handleShow} data-testid="functions-select">
-        _
+      <button onClick={handleShowFunctions} data-testid="functions-show">
+        F
       </button>
-      {show ? (
-        <div className="functions-container" data-testid="functions-container">
-          <ControlsForm />
+      <button onClick={handleShowConstants} data-testid="constants-show">
+        C
+      </button>
+      {show === "functions" ? (
+        <div
+          className="functions forms-container"
+          data-testid="functions-container"
+        >
+          <Functions />
+        </div>
+      ) : show === "constants" ? (
+        <div
+          className="constants forms-container"
+          data-testid="constants-container"
+        >
+          <Constants constants={constants} />
         </div>
       ) : null}
     </div>

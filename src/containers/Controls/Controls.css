@@ -1,6 +1,5 @@
 .controls-wrapper {
-  position: absolute;
-  z-index: 999;
+  width: 15%;
 }
 
 .controls-wrapper * {

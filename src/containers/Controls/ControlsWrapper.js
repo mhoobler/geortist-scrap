@@ -1,14 +1,14 @@
 import ControlsContainer from "./ControlsContainer";
 import "./Controls.css";
 
-const ControlsWrapper = () => {
-  const dummyProps = {
-    constants: {},
-    functions: {},
-  };
+/*
+ * TODO: replace props with useContext
+ */
+
+const ControlsWrapper = (props) => {
   return (
     <div className="controls-wrapper">
-      <ControlsContainer {...dummyProps} />
+      <ControlsContainer {...props} />
     </div>
   );
 };

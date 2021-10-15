@@ -7,19 +7,30 @@ const dummyProps = {
   functions: {},
 };
 
-test("renders on the screen as closed", () => {
+test("renders on the screen with functions form", () => {
   render(<ControlsContainer {...dummyProps} />);
-  const functions = screen.queryAllByTestId("functions-container");
-
-  expect(functions.length).toBe(0);
+  const functions = screen.getByText("Functions");
+  expect(functions).toBeInTheDocument();
 });
 
-test("clicking on button shows functions-container", () => {
+test("clicking on button shows constants form", () => {
   render(<ControlsContainer {...dummyProps} />);
-  const button = screen.getByTestId("functions-select");
+
+  const button = screen.getByTestId("constants-show");
   fireEvent.click(button);
 
-  const functions = screen.getByTestId("functions-container");
+  const constants = screen.getByText("Constants");
+  expect(constants).toBeInTheDocument();
+});
 
+test("we can go back to functions form", () => {
+  render(<ControlsContainer {...dummyProps} />);
+
+  const showConstants = screen.getByTestId("constants-show");
+  const showFunctions = screen.getByTestId("functions-show");
+  fireEvent.click(showConstants);
+  fireEvent.click(showFunctions);
+
+  const functions = screen.getByText("Functions");
   expect(functions).toBeInTheDocument();
 });

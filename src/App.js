@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { Canvas, Controls } from "./containers";
+
+import { constants } from "./utils/dummyData";
+
 import "./App.css";
+
+/*
+ * TODO: replace dummyData with Context
+ */
 
 function App() {
   const [resolution, setResolution] = useState({
@@ -10,7 +17,6 @@ function App() {
 
   useEffect(() => {
     const resize = () => {
-      console.log("fire");
       setResolution({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -25,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <Controls />
+      <Controls constants={constants} functions={{}} />
       <Canvas {...resolution} />
     </div>
   );

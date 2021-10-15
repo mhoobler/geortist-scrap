@@ -5,7 +5,9 @@ import { Constants } from "../fieldsets";
 // Props
 const constants = {
   0: {
+    name: "Billy",
     type: "CIRCLE",
+    id: "0",
     x: 250,
     y: 250,
     r: 50,
@@ -32,16 +34,6 @@ test("can click 'Add Constant'", () => {
 
   const addButton = screen.getByText("Add Constant");
   fireEvent.click(addButton);
-
-  expect(handleClick).toHaveBeenCalledTimes(1);
-});
-
-test("can click 'Close Child'", () => {
-  const handleClick = jest.fn((e) => e.preventDefault());
-  render(<Constants constants={constants} removeChild={handleClick} />);
-
-  const removeButton = screen.getByTestId("close-0");
-  fireEvent.click(removeButton);
 
   expect(handleClick).toHaveBeenCalledTimes(1);
 });

@@ -1,23 +1,11 @@
+import { Circle } from "../../../components";
 const ConstantsForm = ({ constants, addChild, removeChild }) => {
   const keys = Object.keys(constants);
 
-  const GetComponent = ({ id, obj }) => {
-    switch (obj.type) {
+  const GetComponent = ({ id, data }) => {
+    switch (data.type) {
       case "CIRCLE": {
-        return (
-          <fieldset data-testid={`fieldset-${id}`}>
-            <legend>
-              {obj.type}{" "}
-              <button onClick={removeChild} data-testid={`close-${id}`}>
-                x
-              </button>
-            </legend>
-            <div>
-              <label>x: </label>
-              <input />
-            </div>
-          </fieldset>
-        );
+        return <Circle data={data} removeChild={removeChild} />;
       }
       default: {
         throw new Error("Could not find component");
@@ -30,7 +18,7 @@ const ConstantsForm = ({ constants, addChild, removeChild }) => {
       <fieldset>
         <legend>Constants</legend>
         {keys.map((key) => {
-          return <GetComponent key={key} id={key} obj={constants[key]} />;
+          return <GetComponent key={key} id={key} data={constants[key]} />;
         })}
         <button onClick={addChild}> Add Constant </button>
       </fieldset>
